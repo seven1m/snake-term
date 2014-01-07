@@ -10,10 +10,10 @@ To play:
 
 Use the Vim directional keys for movement:
 
-h = left
-j = down
-k = up
-l = right
+    h = left
+    j = down
+    k = up
+    l = right
 
 Don't hit a wall or yourself!
 
