@@ -28,7 +28,10 @@ begin
       put.(food[0], food[1], 'x')                             # show food
       (x, y) = snake[0]                                       # get previous head
       (x, y) = [x + vector[0], y + vector[1]]                 # make a new head at next position
-      exit unless (2..79).include?(x) and (2..24).include?(y) # die if out of bounds
+      x = 79 if x < 2
+      x = 2  if x > 79
+      y = 24 if y < 2
+      y = 2  if y > 24
       exit if snake.include?([x, y])                          # die if head touches another part of snake
       snake.unshift [x, y]                                    # place the head on the snake
       put.(x, y, 'O')                                         # put the new head on screen
@@ -40,6 +43,7 @@ begin
         put.(x, y, ' ')                                       # remove the old tail from screen
       end
       sleep 0.1
+      sleep 0.1 if vector[1] != 0
     end
   end
 
@@ -47,12 +51,12 @@ begin
     key = STDIN.getc
     case key
       # vim keys ftw
-      when 'k' then vector = [ 0, -1] if vector != [ 0,  1]
-      when 'h' then vector = [-1,  0] if vector != [ 1,  0]
-      when 'j' then vector = [ 0,  1] if vector != [ 0, -1]
-      when 'l' then vector = [ 1,  0] if vector != [-1,  0]
+      when 'w' then vector = [ 0, -1] if vector != [ 0,  1]
+      when 'a' then vector = [-1,  0] if vector != [ 1,  0]
+      when 's' then vector = [ 0,  1] if vector != [ 0, -1]
+      when 'd' then vector = [ 1,  0] if vector != [-1,  0]
     end
-  end until key == 'q'
+  end until key == 'Q'
 
 ensure
   nocbreak; echo; curs_set(1)
